@@ -23,14 +23,18 @@ struct HomePage: View {
                             .font(.title2)
                             .fontWeight(.medium)
                         Spacer()
-                        Image(systemName: "circle.grid.2x2.fill")
-                            .foregroundColor(Color("kPrimary"))
+                        NavigationLink {
+                            ProductsView()
+                        } label:{
+                            Image(systemName: "circle.grid.2x2.fill")
+                                .foregroundColor(Color("kPrimary"))
+                        }
                     }.padding()
                     ScrollView(.horizontal,showsIndicators: false){
                         HStack(spacing: 10) {
                             ForEach(productList,id: \.id){ product in
                                 NavigationLink{
-                                    Text(product.name)
+                                    ProductDetailView(product: product)
                                 } label: {
                                     ProductCardView(product: product)
                                         .environmentObject(cartManager)
